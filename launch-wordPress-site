@@ -1,0 +1,30 @@
+How to launch a website in wordpress using AWS?
+Lightsail is the better way to acheive this and below are the steps to do this. 
+
+* Create instance in LightSail.
+* Select location, Image, and wordpress as blueprint. 
+* Optionally can add a launch script that will execute when the instance launches for first time.
+* Select instance plan, give instance a name and create instance. 
+
+* After creating the instance, Connect to the instance from lightsail by clikcing the terminal button next to instance.  
+** If you try connecting to the instance immideately after creating, you may get an error to wait for few mins **
+
+* After connecting, retrieve the password using -> ** cat bitnami_application_password -> this password will be available in /home/bitnami folder.
+
+* login to WP admin dashboard using http://<ip address of the instance>/wp-login.php
+* user credentials -> username -> user , password -> retrieved from bitnami and login
+* You will be in wordpress now. 
+
+-- A static IP is needed for wordpress IP because stop and starting of the instance will change the IP address of the instance. Static will stay the same.
+* We can do this from lightsail page -> networking tab -> create Static IP. 
+--> with this static IP, can one can open the website just created. 
+
+Now, let's create a lightsail DNS zone to map a domain to this wordpress instance. 
+
+* In lightsail, go to networking -> go to create a DNS zone. If you don't already have a domain, then you can register one using route 53. Price vary from $10. 
+-> give the domain name and click create DNS zone. 
+-> Make a note of the name server addresses and use them to transfer management of the domain's DNS records. 
+
+--> Once this management is done, follow the below steps.
+
+  
